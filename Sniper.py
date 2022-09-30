@@ -1,13 +1,10 @@
-import time
-
 import cv2
 import mss
-import numpy
-
+from numpy import array
 
 with mss.mss() as sct:
     # Part of the screen to capture
-    monitor_number = 1
+    monitor_number = -1
     mon = sct.monitors[monitor_number]
     monitor = {
         "top": mon["height"] // 2 - 100,  # 100px from the top
@@ -17,7 +14,7 @@ with mss.mss() as sct:
         "mon": monitor_number,
     }
     while "not q":
-        img = numpy.array(sct.grab(monitor))
+        img = array(sct.grab(monitor))
         # Display the picture
         cv2.imshow("OpenCV/Numpy normal", cv2.resize(img, (400, 400), interpolation=cv2.INTER_AREA))
         # Press "q" to quit
